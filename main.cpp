@@ -123,13 +123,13 @@ void transferencia(int index) {
     char cpfDestino[20];
     float valor;
 
-    printf("CPF do destinat√°rio: ");
+    printf("CPF do destinat·rio: ");
     scanf("%s", cpfDestino);
     printf("Valor a transferir: R$ ");
     scanf("%f", &valor);
 
     if (valor <= 0 || valor > pessoas[index].saldo) {
-        printf("Valor inv√°lido ou saldo insuficiente!\n");
+        printf("Valor inv·lido ou saldo insuficiente!\n");
         return;
     }
 
@@ -138,11 +138,11 @@ void transferencia(int index) {
             pessoas[index].saldo -= valor;
             pessoas[i].saldo += valor;
             salvarClientes();
-            printf("Transfer√™ncia realizada com sucesso!\n");
+            printf("TransferÍncia realizada com sucesso!\n");
             return;
         }
     }
-    printf("Destinat√°rio n√£o encontrado!\n");
+    printf("Destinat·rio n„o encontrado!\n");
 }
 
 void salvarAdmins() {
@@ -174,7 +174,7 @@ void cadastroAdmin() {
         "ADM7953", "ADM8491", "ADM9204", "ADM1035", "ADM2148"
     };
 
-    printf("Informe o c√≥digo de seguran√ßa para criar um administrador: ");
+    printf("Informe o cÛdigo de seguranÁa para criar um administrador: ");
     scanf("%s", codigoDigitado);
 
     int valido = 0;
@@ -186,7 +186,7 @@ void cadastroAdmin() {
     }
 
     if (!valido) {
-        printf("C√≥digo inv√°lido! N√£o √© poss√≠vel criar um administrador.\n");
+        printf("CÛdigo inv·lido! N„o È possÌvel criar um administrador.\n");
         return;
     }
 
@@ -245,7 +245,7 @@ void buscarCliente() {
             return;
         }
     }
-    printf("Cliente n√£o encontrado.\n");
+    printf("Cliente n„o encontrado.\n");
 }
 
 void alterarSaldo() {
@@ -266,7 +266,7 @@ void alterarSaldo() {
             return;
         }
     }
-    printf("Cliente n√£o encontrado.\n");
+    printf("Cliente n„o encontrado.\n");
 }
 
 void menuAdmin() {
@@ -294,7 +294,7 @@ void menuAdmin() {
                 printf("Saindo do menu admin...\n");
                 break;
             default:
-                printf("Op√ß√£o inv√°lida!\n");
+                printf("OpÁ„o inv·lida!\n");
         }
     } while (opcao != 0);
 }
@@ -321,7 +321,7 @@ void menu() {
                     int opcaoLogin;
                     do {
                         printf("\n1 - Extrato\n");
-                        printf("2 - Transfer√™ncia\n");
+                        printf("2 - TransferÍncia\n");
                         printf("0 - Sair\n");
                         printf("Escolha: ");
                         scanf("%d", &opcaoLogin);
@@ -346,7 +346,7 @@ void menu() {
                 printf("Saindo...\n");
                 break;
             default:
-                printf("Op√ß√£o inv√°lida!\n");
+                printf("OpÁ„o inv·lida!\n");
         }
     } while (opcao != 0);
 }
@@ -356,5 +356,6 @@ int main() {
     carregarClientes();
     carregarAdmins();
     menu();
+    printf("BUMBUM GRANADA NA NUCA");
     return 0;
 }
