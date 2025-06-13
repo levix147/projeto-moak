@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -68,7 +69,7 @@ void cadastroCliente() {
         return;
     }
 
-    printf("=== Cadastro de Cliente ===\n");
+    printf("=== Cadastro de Cliente ===\n\n");
     printf("Nome: ");
     fflush(stdin);
     gets(pessoas[totalCadastros].nome);
@@ -93,11 +94,14 @@ void cadastroCliente() {
     totalCadastros++;
     salvarClientes();
 
-    printf("Cadastro realizado com sucesso!\n");
+    printf("\nCadastro realizado com sucesso!\n");
 }
 
 int loginCliente() {
     char cpf[20], senha[20];
+    
+    printf("Informe seus dados cadastrados:\n\n");
+    
     printf("CPF: ");
     scanf("%s", cpf);
     printf("Senha: ");
@@ -105,31 +109,31 @@ int loginCliente() {
 
     for (int i = 0; i < totalCadastros; i++) {
         if (strcmp(pessoas[i].cpf, cpf) == 0 && strcmp(pessoas[i].senha, senha) == 0) {
-            printf("Login realizado com sucesso! Bem-vindo(a), %s.\n", pessoas[i].nome);
+            printf("\nLogin realizado com sucesso! Bem-vindo(a), %s.\n", pessoas[i].nome);
             return i;
         }
     }
-    printf("CPF ou senha incorretos!\n");
+    printf("\nCPF ou senha incorretos!\n");
     return -1;
 }
 
 void extrato(int index) {
-    printf("=== Extrato ===\n");
+    printf("=== Extrato ===\n\n");
     printf("Nome: %s\n", pessoas[index].nome);
-    printf("Saldo atual: R$ %.2f\n", pessoas[index].saldo);
+    printf("Saldo atual: R$ %.2f\n\n", pessoas[index].saldo);
 }
 
 void transferencia(int index) {
     char cpfDestino[20];
     float valor;
 
-    printf("CPF do destinat√°rio: ");
+    printf("CPF do destinat·rio: ");
     scanf("%s", cpfDestino);
     printf("Valor a transferir: R$ ");
     scanf("%f", &valor);
 
     if (valor <= 0 || valor > pessoas[index].saldo) {
-        printf("Valor inv√°lido ou saldo insuficiente!\n");
+        printf("\nValor inv·lido ou saldo insuficiente!\n");
         return;
     }
 
@@ -138,11 +142,11 @@ void transferencia(int index) {
             pessoas[index].saldo -= valor;
             pessoas[i].saldo += valor;
             salvarClientes();
-            printf("Transfer√™ncia realizada com sucesso!\n");
+            printf("\nTransferÍncia realizada com sucesso!\n");
             return;
         }
     }
-    printf("Destinat√°rio n√£o encontrado!\n");
+    printf("\nDestinat·rio n„o encontrado!\n");
 }
 
 void salvarAdmins() {
@@ -174,7 +178,7 @@ void cadastroAdmin() {
         "ADM7953", "ADM8491", "ADM9204", "ADM1035", "ADM2148"
     };
 
-    printf("Informe o c√≥digo de seguran√ßa para criar um administrador: ");
+    printf("Informe o cÛdigo de seguranÁa para criar um administrador: ");
     scanf("%s", codigoDigitado);
 
     int valido = 0;
@@ -186,7 +190,7 @@ void cadastroAdmin() {
     }
 
     if (!valido) {
-        printf("C√≥digo inv√°lido! N√£o √© poss√≠vel criar um administrador.\n");
+        printf("\nCÛdigo inv·lido! N„o È possÌvel criar um administrador.\n");
         return;
     }
 
@@ -195,7 +199,7 @@ void cadastroAdmin() {
         return;
     }
 
-    printf("=== Cadastro de Administrador ===\n");
+    printf("\n=== Cadastro de Administrador ===\n\n");
     printf("Nome: ");
     fflush(stdin);
     gets(admins[totalAdmins].nome);
@@ -206,11 +210,12 @@ void cadastroAdmin() {
     totalAdmins++;
     salvarAdmins();
 
-    printf("Administrador cadastrado com sucesso!\n");
+    printf("\nAdministrador cadastrado com sucesso!\n");
 }
 
 int loginAdmin() {
     char nome[50], senha[20];
+    
     printf("Nome: ");
     scanf("%s", nome);
     printf("Senha: ");
@@ -218,24 +223,27 @@ int loginAdmin() {
 
     for (int i = 0; i < totalAdmins; i++) {
         if (strcmp(admins[i].nome, nome) == 0 && strcmp(admins[i].senha, senha) == 0) {
-            printf("Login de administrador realizado com sucesso! Bem-vindo, %s.\n", admins[i].nome);
+            printf("\nLogin de administrador realizado com sucesso! Bem-vindo, %s.\n", admins[i].nome);
             return i;
         }
     }
-    printf("Nome ou senha incorretos!\n");
+    printf("\nNome ou senha incorretos!\n");    
     return -1;
 }
 
 void listarClientes() {
-    printf("=== Lista de Clientes ===\n");
+    printf("=== Lista de Clientes ===\n\n");
+    
     for (int i = 0; i < totalCadastros; i++) {
-        printf("%d - Nome: %s | CPF: %s | Saldo: R$ %.2f\n",
-               i + 1, pessoas[i].nome, pessoas[i].cpf, pessoas[i].saldo);
+        printf("%d - Nome: %s | CPF: %s | Saldo: R$ %.2f\n", i + 1, pessoas[i].nome, pessoas[i].cpf, pessoas[i].saldo);
     }
+    
+    printf("\n");
 }
 
 void buscarCliente() {
     char cpf[20];
+    
     printf("CPF do cliente a buscar: ");
     scanf("%s", cpf);
 
@@ -245,7 +253,7 @@ void buscarCliente() {
             return;
         }
     }
-    printf("Cliente n√£o encontrado.\n");
+    printf("Cliente n„o encontrado.\n");
 }
 
 void alterarSaldo() {
@@ -262,23 +270,28 @@ void alterarSaldo() {
             scanf("%f", &novoSaldo);
             pessoas[i].saldo = novoSaldo;
             salvarClientes();
-            printf("Saldo alterado com sucesso.\n");
+            printf("\nSaldo alterado com sucesso.\n");
             return;
         }
     }
-    printf("Cliente n√£o encontrado.\n");
+    printf("Cliente n„o encontrado.\n");
 }
 
 void menuAdmin() {
     int opcao;
+    
+    system("cls");
+    
     do {
-        printf("\n=== Menu Administrador ===\n");
+        printf("=== Menu Administrador ===\n\n");
         printf("1 - Listar clientes\n");
         printf("2 - Buscar cliente\n");
         printf("3 - Alterar saldo de cliente\n");
         printf("0 - Sair\n");
-        printf("Escolha: ");
+        printf("\nEscolha: ");
         scanf("%d", &opcao);
+        
+        system("cls");
 
         switch (opcao) {
             case 1:
@@ -294,67 +307,90 @@ void menuAdmin() {
                 printf("Saindo do menu admin...\n");
                 break;
             default:
-                printf("Op√ß√£o inv√°lida!\n");
+                printf("OpÁ„o inv·lida!\n");
         }
+        
+        system("pause");
+        system("cls");
     } while (opcao != 0);
+}
+
+void menuUsuario(int user) {
+	int opcao;
+	
+	system("pause");
+    system("cls");
+	     
+	if(user != -1) {
+	    do {
+	        printf("1 - Extrato\n");
+	        printf("2 - TransferÍncia\n");
+	        printf("0 - Voltar\n");
+	        printf("\nEscolha: ");
+	        scanf("%d", &opcao);
+	        
+	        system("cls");
+	        
+	        if(opcao == 1) 
+				extrato(user);
+	        else if (opcao == 2) 
+				transferencia(user);
+			else 
+				printf("OpÁ„o inv·lida!\n\n");	     
+			   
+	        system("pause");
+	        system("cls");
+	    } while (opcao != 0);
+	}
 }
 
 void menu() {
     int opcao;
+    
     do {
-        printf("\n=== Banco Digital ===\n");
+        printf("=== Banco Digital ===\n\n");
         printf("1 - Cadastrar cliente\n");
         printf("2 - Login cliente\n");
         printf("3 - Cadastrar administrador\n");
         printf("4 - Login administrador\n");
-        printf("0 - Sair\n");
+        printf("0 - Sair\n\n");
         printf("Escolha: ");
         scanf("%d", &opcao);
+
+		system("cls");
 
         switch (opcao) {
             case 1:
                 cadastroCliente();
                 break;
-            case 2: {
-                int user = loginCliente();
-                if (user != -1) {
-                    int opcaoLogin;
-                    do {
-                        printf("\n1 - Extrato\n");
-                        printf("2 - Transfer√™ncia\n");
-                        printf("0 - Sair\n");
-                        printf("Escolha: ");
-                        scanf("%d", &opcaoLogin);
-
-                        if (opcaoLogin == 1)
-                            extrato(user);
-                        else if (opcaoLogin == 2)
-                            transferencia(user);
-                    } while (opcaoLogin != 0);
-                }
+            case 2: {         	
+                menuUsuario(loginCliente());
                 break;
             }
             case 3:
                 cadastroAdmin();
                 break;
             case 4:
-                if (loginAdmin() != -1) {
-                    menuAdmin();
-                }
+                if(loginAdmin() != -1) menuAdmin();
                 break;
             case 0:
                 printf("Saindo...\n");
                 break;
             default:
-                printf("Op√ß√£o inv√°lida!\n");
+                printf("OpÁ„o inv·lida!\n");
         }
+        
+		system("pause");
+		system("cls");
     } while (opcao != 0);
 }
 
 int main() {
     setlocale(LC_ALL, "Portuguese");
+    
     carregarClientes();
     carregarAdmins();
     menu();
+    
     return 0;
 }
